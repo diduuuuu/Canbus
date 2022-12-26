@@ -6,7 +6,7 @@ import java.awt.*;
 public class Toolbar extends JToolBar implements ChangeListener {
     static int stroke = 5;
     public Toolbar(){
-        setBackground(Color.PINK);
+        setBackground(Buttons.pretty);
 
         Buttons btn = new Buttons();
         JSlider strokeS = new JSlider(0,30,5);
@@ -40,6 +40,5 @@ public class Toolbar extends JToolBar implements ChangeListener {
     public void stateChanged(ChangeEvent e) {
         JSlider value = (JSlider)e.getSource();
         stroke = value.getValue();
-        System.out.println(stroke);
     }
 }

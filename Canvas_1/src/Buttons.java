@@ -14,12 +14,15 @@ public class Buttons {
     static int counter1 = 1;
     static int counter2 = 0;
     static int distinction = 0;
+    static Color pretty = new Color(152, 211, 255, 255);
+    static Boolean undo = false;
+    static Boolean redo = false;
 
 
     Buttons() {
         for (int i = 0; i < 5; i++) {
             buttons[i] = new JButton(new ImageIcon("icon/" + i + ".png"));
-            buttons[i].setBackground(Color.PINK);
+            buttons[i].setBackground(pretty);
         }
         buttons[0].addActionListener(new ActionListener() {
             @Override
@@ -29,7 +32,7 @@ public class Buttons {
                     if(i == 0)
                         buttons[i].setBackground(Color.white);
                     else
-                        buttons[i].setBackground(Color.PINK);
+                        buttons[i].setBackground(pretty);
                 }
             }
         });
@@ -41,7 +44,7 @@ public class Buttons {
                     if(i == 1)
                         buttons[i].setBackground(Color.white);
                     else
-                        buttons[i].setBackground(Color.PINK);
+                        buttons[i].setBackground(pretty);
                 }
             }
         });
@@ -53,7 +56,7 @@ public class Buttons {
                     if(i == 2)
                         buttons[i].setBackground(Color.white);
                     else
-                        buttons[i].setBackground(Color.PINK);
+                        buttons[i].setBackground(pretty);
                 }
             }
         });
@@ -65,7 +68,7 @@ public class Buttons {
                     if(i == 3)
                         buttons[i].setBackground(Color.white);
                     else
-                        buttons[i].setBackground(Color.PINK);
+                        buttons[i].setBackground(pretty);
                 }
             }
         });
@@ -77,7 +80,7 @@ public class Buttons {
                     if(i == 4)
                         buttons[i].setBackground(Color.white);
                     else
-                        buttons[i].setBackground(Color.PINK);
+                        buttons[i].setBackground(pretty);
                 }
             }
         });
@@ -96,7 +99,6 @@ public class Buttons {
                         else if (counter1 == 1){
                             color = cd.showDialog(null, "색상", Color.BLACK);
                             buttons[5].setBackground(color);
-                            counter1 -= 1;
                     }
                 }
                     else if(distinction == 1){//현재 설정값이 6인 상태
@@ -104,6 +106,7 @@ public class Buttons {
                         buttons[5].setText("      V      ");
                         buttons[6].setText("                ");
                         counter1 = 1;
+                        counter2 = 0;
                         distinction = 0;
                     }
             }
@@ -123,41 +126,41 @@ public class Buttons {
                     else if (counter2 == 1){
                         color2 = cd.showDialog(null, "색상", Color.BLACK);
                         buttons[6].setBackground(color2);
-                        counter2 -= 1;
                     }
                 }
                 else if(distinction == 0){
                     buttons[6].setBackground(color2);
                     buttons[6].setText("      V      ");
                     buttons[5].setText("                ");
-                    distinction = 1;
+                    counter1 = 0;
                     counter2 = 1;
+                    distinction = 1;
                 }
             }
         });
         buttons[7] = new JButton("파일 저장");
-        buttons[7].setBackground(Color.PINK);
+        buttons[7].setBackground(pretty);
         buttons[7].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                buttonType = 7;
                 File file = new File();
             }
         });
         buttons[8] = new JButton("이전");
-        buttons[8].setBackground(Color.PINK);
+        buttons[8].setBackground(pretty);
         buttons[8].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                buttonType = 8;
+                undo = true;
+
             }
         });
         buttons[9] = new JButton("이후");
-        buttons[9].setBackground(Color.PINK);
+        buttons[9].setBackground(pretty);
         buttons[9].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                buttonType = 9;
+                redo = true;
             }
         });
     }
